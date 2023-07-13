@@ -1,5 +1,18 @@
 <?php
 
+use Illuminate\Support\Str;
+
+if (!function_exists('title')) {
+    /**
+     * @param  string  $value
+     * @return string|null
+     */
+    function title($value)
+    {
+        return Str::remove(' ', ucwords(Str::of($value)->replace('_', ' ')));
+    }
+}
+
 if (!function_exists('includeRouteFiles')) {
 
     /**

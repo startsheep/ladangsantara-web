@@ -3,20 +3,20 @@
 use Illuminate\Support\Facades\Route;
 
 $listMenus = [
-    'product' => 'product'
+    'store' => 'store'
 ];
 
 foreach ($listMenus as $key => $menu) {
     $name = ucfirst($key);
-    $component = "App\\Http\\Controllers\\API\\$name";
+    $component = "App\\Http\\Controllers\\API\\$name" . "Controller";
 
-    Route::prefix($menu)->name("api.$key.")->group(function () use ($key, $component) {
+    Route::prefix($menu)->name("api.$key.")->middleware(["auth:sanctum"])->group(function () use ($key, $component) {
         if (@class_exists($component)) {
-            Route::get('/', [$component::class, 'index'])->name("index");
-            Route::post('/', [$component::class, 'store'])->name("store");
-            Route::get('/{id}', [$component::class, 'show'])->name("show");
-            Route::put('/{id}', [$component::class, 'update'])->name("update");
-            Route::delete('/{id}', [$component::class, 'destroy'])->name("destroy");
+            Route::get('/', [$component, 'index'])->name("index");
+            Route::post('/', [$component, 'store'])->name("store");
+            Route::get('/{id}', [$component, 'show'])->name("show");
+            Route::put('/{id}', [$component, 'update'])->name("update");
+            Route::delete('/{id}', [$component, 'destroy'])->name("destroy");
         }
     });
 }
