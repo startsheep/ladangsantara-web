@@ -37,9 +37,7 @@ class LoginController extends Controller
             $tokenName = 'api';
             $scopes = [$user->role->name];
 
-            $user->tokens()->where('name', $tokenName)->delete();
-
-            $token = $user->createToken('api', $scopes)->plainTextToken;
+            $token = $user->createToken($tokenName, $scopes)->plainTextToken;
 
             DB::commit();
             return $this->successMessage("login berhasil", $user, $token);
