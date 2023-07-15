@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 $listMenus = [
-    'product' => 'product'
+    'store' => 'store'
 ];
 
 foreach ($listMenus as $key => $menu) {
@@ -46,6 +46,12 @@ foreach ($listMenus as $key => $menu) {
         }
         if (@class_exists("$component\\Edit")) {
             Route::get('/{' . $key . '}/edit', "$component\\Edit")->name('edit');
+        }
+        if (@class_exists("$component\\Detail")) {
+            Route::get('/detail/{' . $key . '}', "$component\\Detail")->name('detail');
+        }
+        if (@class_exists("$component\\Delete")) {
+            Route::delete('/{' . $key . '}', "$component\\Delete")->name('delete');
         }
     });
 }

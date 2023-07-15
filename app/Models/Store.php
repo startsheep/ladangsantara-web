@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class Store extends Model
 {
@@ -20,6 +21,15 @@ class Store extends Model
         "logo",
         "status",
     ];
+
+    public function getLogoAttribute($image)
+    {
+        if ($image && Storage::exists('storage/' . $image)) {
+            return asset('storage/' . $image);
+        }
+
+        return asset('assets/images/logo-not-found.png');
+    }
 
     public function user(): HasOne
     {
