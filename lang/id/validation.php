@@ -66,7 +66,7 @@ return [
         'array' => ':attribute harus terdiri dari :value anggota atau lebih.',
     ],
     'image' => ':attribute harus berupa gambar.',
-    'in' => ':attribute yang dipilih tidak valid, yaitu :values.',
+    'in' => ':attribute yang dipilih tidak valid. harap pilih yaitu :values.',
     'in_array' => ':attribute tidak ada di dalam :other.',
     'integer' => ':attribute harus berupa bilangan bulat.',
     'ip' => ':attribute harus berupa alamat IP yang valid.',
