@@ -25,7 +25,7 @@ class Store extends Model
 
     public function getLogoAttribute($image)
     {
-        if (Storage::exists($image)) {
+        if ($image && Storage::exists($image)) {
             return asset('storage/' . $image);
         }
 

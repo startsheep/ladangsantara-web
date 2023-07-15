@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Product\Search;
+use App\Http\Filters\Product\ShowByCategory;
+use App\Http\Filters\Product\ShowByPrice;
+use App\Http\Filters\Product\ShowByStore;
+use App\Http\Filters\Product\ShowByStoreAndUser;
 use App\Http\Requests\API\Product\ProductCreateRequest;
 use App\Http\Requests\API\Product\ProductUpdateRequest;
 use App\Http\Resources\Product\ProductCollection;
@@ -33,7 +38,13 @@ class ProductController extends Controller
     {
         $products = app(Pipeline::class)
             ->send($this->product->query())
-            ->through([])
+            ->through([
+                Search::class,
+                ShowByPrice::class,
+                ShowByStore::class,
+                ShowByCategory::class,
+                ShowByStoreAndUser::class,
+            ])
             ->thenReturn()
             ->paginate($request->per_page);
 
