@@ -111,6 +111,13 @@ class StoreController extends Controller
                 Storage::delete($path);
             }
 
+            if ($store->products) {
+                foreach ($store->products as $product) {
+                    $path = str_replace(url('storage') . '/', '', $product->image);
+                    Storage::delete($path);
+                }
+            }
+
             $store->delete();
 
             DB::commit();
