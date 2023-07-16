@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 $listMenus = [
+    'cart' => 'cart',
     'store' => 'store',
-    'product' => 'product'
+    'product' => 'product',
 ];
 
 foreach ($listMenus as $key => $menu) {
