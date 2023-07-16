@@ -35,6 +35,7 @@ class CheckStoreController extends Controller
             "SUCCESS",
             "anda sudah terdaftar sebagai penjual",
             JsonResponse::HTTP_OK,
+            $store
         );
     }
 }
