@@ -19,13 +19,13 @@ class VillageController extends Controller
             "id_kecamatan" => $request->district_id
         ])->json();
 
-        return $this->customMessage("SUCCESS", "data kecamatan berhasil diambil", JsonResponse::HTTP_OK, $apiVillage['kelurahan']);
+        return $this->customMessage("SUCCESS", "data desa berhasil diambil", JsonResponse::HTTP_OK, $apiVillage['kelurahan']);
     }
 
     public function show($id)
     {
         $apiVillage = Http::get(InitRegion::API_REGION . InitRegion::VILLAGE . $id)->json();
 
-        return $this->customMessage("SUCCESS", "data kecamatan berhasil diambil", JsonResponse::HTTP_OK, $apiVillage);
+        return $this->customMessage("SUCCESS", "data desa berhasil diambil", JsonResponse::HTTP_OK, $apiVillage);
     }
 }

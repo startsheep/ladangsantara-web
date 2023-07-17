@@ -14,8 +14,15 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->references('id')->on('users')->cascadeOnDelete();
+            $table->string('contact_name');
+            $table->string('contact_phone');
+            $table->bigInteger('province_id');
+            $table->bigInteger('regency_id');
+            $table->bigInteger('district_id');
+            $table->bigInteger('village_id');
             $table->string('address');
+            $table->tinyInteger('is_default')->default(0);
             $table->timestamps();
         });
     }
