@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Cart\ShowByUser;
 use App\Http\Filters\Cart\ShowProduct;
 use App\Http\Filters\Cart\ShowUser;
 use App\Http\Requests\API\Cart\CartRequest;
@@ -32,7 +33,8 @@ class CartController extends Controller
             ->send($this->cart->query())
             ->through([
                 ShowUser::class,
-                ShowProduct::class
+                ShowProduct::class,
+                ShowByUser::class
             ])
             ->thenReturn()
             ->paginate($request->per_page);
