@@ -13,17 +13,19 @@ class RegencyController extends Controller
 {
     use MessageFixer;
 
-    public function index()
+    public function index(Request $request)
     {
-        $apiProvince = Http::get(InitRegion::API_REGION . InitRegion::PROVINCE)->json();
+        $apiRegency = Http::get(InitRegion::API_REGION . InitRegion::REGENCY, [
+            "id_provinsi" => $request->province_id
+        ])->json();
 
-        return $this->customMessage("SUCCESS", "data kota berhasil diambil", JsonResponse::HTTP_OK, $apiProvince);
+        return $this->customMessage("SUCCESS", "data kota berhasil diambil", JsonResponse::HTTP_OK, $apiRegency['kota_kabupaten']);
     }
 
     public function show($id)
     {
-        $apiProvince = Http::get(InitRegion::API_REGION . InitRegion::PROVINCE . $id)->json();
+        $apiRegency = Http::get(InitRegion::API_REGION . InitRegion::REGENCY . $id)->json();
 
-        return $this->customMessage("SUCCESS", "data kota berhasil diambil", JsonResponse::HTTP_OK, $apiProvince);
+        return $this->customMessage("SUCCESS", "data kota berhasil diambil", JsonResponse::HTTP_OK, $apiRegency);
     }
 }
