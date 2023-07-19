@@ -11,6 +11,8 @@ class Address extends Model
 {
     use HasFactory;
 
+    const ACTIVE = 1;
+
     protected $fillable = [
         "user_id",
         "contact_name",

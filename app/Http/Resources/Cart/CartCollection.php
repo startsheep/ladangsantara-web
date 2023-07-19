@@ -15,10 +15,29 @@ class CartCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
+        $data = [];
+
+        $groupedData = collect($this)->groupBy(function ($item) {
+            return $item['product']['store']['name'];
+        });
+
+        foreach ($groupedData as $storeName => $items) {
+            $storeData = [
+                "store" => $storeName,
+                "cart_items" => []
+            ];
+
+            foreach ($items as $item) {
+                $storeData["cart_items"][] = $item;
+            }
+
+            $data[] = $storeData;
+        }
+
         return [
             "status" => "SUCCESS",
             "status_code" => JsonResponse::HTTP_OK,
-            "data" => parent::toArray($request)
+            "data" => $data
         ];
     }
 }

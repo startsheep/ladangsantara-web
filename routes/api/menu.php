@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 $listMenus = [
     'cart' => 'cart',
     'store' => 'store',
+    'order' => 'order',
     'product' => 'product',
 ];
 
