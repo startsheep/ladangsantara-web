@@ -18,12 +18,12 @@ class CartCollection extends ResourceCollection
         $data = [];
 
         $groupedData = collect($this)->groupBy(function ($item) {
-            return $item['product']['store']['name'];
+            return $item['product']['store'];
         });
 
         foreach ($groupedData as $storeName => $items) {
             $storeData = [
-                "store" => $storeName,
+                "store" => json_decode($storeName, true),
                 "cart_items" => []
             ];
 
