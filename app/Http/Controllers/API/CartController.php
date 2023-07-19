@@ -33,7 +33,6 @@ class CartController extends Controller
             ->send($this->cart->query())
             ->through([
                 ShowUser::class,
-                ShowProduct::class,
                 ShowByUser::class
             ])
             ->thenReturn()
