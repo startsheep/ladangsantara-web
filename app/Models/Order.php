@@ -20,7 +20,14 @@ class Order extends Model
 
     const CANCELED = 4;
 
-    protected $fillable = ['user_id', 'address_id', 'amount_purchase'];
+    protected $fillable = [
+        'user_id',
+        'address_id',
+        'amount_purchase',
+        "external_id",
+        "status",
+        "payment_channel"
+    ];
 
     public function purchases(): HasMany
     {
