@@ -26,7 +26,8 @@ class OrderRequest extends FormRequest
     {
         return [
             'cart_ids' => 'required|array',
-            'cart_ids.*' => 'required|exists:carts,id'
+            'cart_ids.*' => 'required|exists:carts,id',
+            'bank_code' => 'required',
         ];
     }
 
@@ -35,6 +36,7 @@ class OrderRequest extends FormRequest
         return [
             'cart_ids' => 'keranjang',
             'cart_ids.*' => 'keranjang',
+            'bank_code' => 'kode bank',
         ];
     }
 
