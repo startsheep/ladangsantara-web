@@ -4,12 +4,15 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Order\OrderRequest;
+use App\Http\Resources\Order\OrderCollection;
+use App\Http\Resources\Order\OrderDetail;
 use App\Http\Traits\MessageFixer;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Facades\DB;
 use Xendit\VirtualAccounts;
 use Xendit\Xendit;
@@ -29,9 +32,15 @@ class OrderController extends Controller
         Xendit::setApiKey(config('xendit.secret_key'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $orders = app(Pipeline::class)
+            ->send($this->order->query())
+            ->through([])
+            ->thenReturn()
+            ->paginate($request->per_page);
+
+        return new OrderCollection($orders);
     }
 
     public function store(OrderRequest $request)
@@ -44,6 +53,7 @@ class OrderController extends Controller
             "user_id" => auth()->user()->id,
             "is_default" => Address::ACTIVE
         ])->first();
+
         if (!$address) {
             return $this->warningMessage("alamat tidak ditemukan.");
         }
@@ -76,7 +86,7 @@ class OrderController extends Controller
                     "qty" => $cart->qty
                 ]);
 
-                // $cart->delete();
+                $cart->delete();
             }
 
             $this->payment($request);
@@ -89,17 +99,22 @@ class OrderController extends Controller
         }
     }
 
-    public function show(string $id)
+    public function show($id)
+    {
+        $order = $this->order->find($id);
+        if (!$order) {
+            return $this->warningMessage("data pesanan tidak ditemukan.");
+        }
+
+        return new OrderDetail($order);
+    }
+
+    public function update(Request $request, $id)
     {
         //
     }
 
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
     }
