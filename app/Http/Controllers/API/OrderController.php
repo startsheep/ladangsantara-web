@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Filters\Order\ShowAddress;
+use App\Http\Filters\Order\ShowByStatus;
+use App\Http\Filters\Order\ShowByUser;
+use App\Http\Filters\Order\ShowUser;
 use App\Http\Requests\API\Order\OrderRequest;
 use App\Http\Resources\Order\OrderCollection;
 use App\Http\Resources\Order\OrderDetail;
@@ -36,7 +40,12 @@ class OrderController extends Controller
     {
         $orders = app(Pipeline::class)
             ->send($this->order->query())
-            ->through([])
+            ->through([
+                ShowUser::class,
+                ShowByUser::class,
+                ShowAddress::class,
+                ShowByStatus::class,
+            ])
             ->thenReturn()
             ->paginate($request->per_page);
 
@@ -99,14 +108,54 @@ class OrderController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $order = $this->order->find($id);
         if (!$order) {
             return $this->warningMessage("data pesanan tidak ditemukan.");
         }
 
+        if ($request->has('user') && $request->user == "true") {
+            $order->load('user');
+        }
+
+        if ($request->has('address') && $request->address == "true") {
+            $order->load('address');
+        }
+
         return new OrderDetail($order);
+    }
+
+    public function cancel(Request $request, $id)
+    {
+        DB::beginTransaction();
+
+        $order = $this->order->find($id);
+        if (!$order) {
+            return $this->warningMessage("data pesanan tidak ditemukan.");
+        }
+
+        try {
+            foreach ($order->purchases as $purchase) {
+                $purchase->update([
+                    "status" => Order::CANCELED
+                ]);
+
+                $purchase->product()->update([
+                    "stock" => $purchase->product->stock + $purchase->qty,
+                ]);
+            }
+
+            $order->update([
+                "status" => "CANCELED"
+            ]);
+
+            DB::commit();
+            return $this->successMessage("pesanan berhasil dibatalkan", $order);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return $this->errorMessage($th->getMessage());
+        }
     }
 
     public function update(Request $request, $id)
