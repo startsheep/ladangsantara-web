@@ -12,6 +12,11 @@ class Purchase extends Model
 
     protected $fillable = ['product_id', 'order_id', 'qty', 'status'];
 
+    public function order(): HasOne
+    {
+        return $this->hasOne(Order::class, 'id', 'order_id');
+    }
+
     public function product(): HasOne
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
