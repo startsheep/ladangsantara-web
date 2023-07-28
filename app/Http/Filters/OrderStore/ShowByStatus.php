@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Filters\OrderStore;
 
 use Closure;
@@ -6,13 +7,18 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ShowByStatus
 {
-	public function handle(Builder $query, Closure $next)
-	{
-		if (!request()->has('show_by_status')) {
-			return $next($query);
-		}
-		$query->where('show_by_status', 'LIKE', '%' . request('showByStatus') . '%');
+    public function handle(Builder $query, Closure $next)
+    {
+        if (!request()->has('status')) {
+            return $next($query);
+        }
 
-		return $next($query);
-	}
+        $query->where(function ($query) {
+            $query->whereHas('purchases', function ($query) {
+                $query->where('status', request('status'));
+            });
+        });
+
+        return $next($query);
+    }
 }
