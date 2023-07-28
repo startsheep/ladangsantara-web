@@ -101,7 +101,7 @@ class OrderStoreController extends Controller
             }
 
             DB::commit();
-            return $this->successMessage("data berhasil dibayar", $purchases);
+            return $this->successMessage("item berhasil diperbaharui", $purchases);
         } catch (\Throwable $th) {
             DB::rollback();
             return $this->errorMessage($th->getMessage());
