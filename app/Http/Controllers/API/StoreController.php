@@ -13,6 +13,7 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,7 +48,8 @@ class StoreController extends Controller
 
         if (auth()->user()->role_id == User::MEMBER) {
             $request->merge([
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                "slug" => Str::slug($request->name)
             ]);
         }
 
@@ -84,6 +86,10 @@ class StoreController extends Controller
         if (!$store) {
             return $this->warningMessage("data toko tidak ditemukan.");
         }
+
+        $request->merge([
+            "slug" => Str::slug($request->name)
+        ]);
 
         try {
             $store->update($request->all());
