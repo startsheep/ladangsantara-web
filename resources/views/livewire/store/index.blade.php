@@ -14,8 +14,6 @@
         </div>
     </x-slot>
 
-    <x-alert bgClass="green">Hallo</x-alert>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -33,12 +31,13 @@
                                     <th scope="col" class="px-6 py-4 border-r">#</th>
                                     <th scope="col" class="px-6 py-4 border-r">Nama Toko</th>
                                     <th scope="col" class="px-6 py-4 border-r">Nama Pemilik</th>
+                                    <th scope="col" class="px-6 py-4 border-r">Alamat</th>
                                     <th scope="col" class="px-6 py-4 border-r">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($stores as $index => $store)
-                                    @livewire('store.single', ['store' => $store, 'index' => $loop->iteration], key($store->id))
+                                    @livewire('store.single', ['store' => $store, 'index' => $index + $stores->firstItem()], key($store->id))
                                 @empty
                                 @endforelse
                             </tbody>

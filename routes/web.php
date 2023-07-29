@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function () {
 });
 
 $listMenus = [
-    'store' => 'store'
+    'store' => 'store',
+    'product' => 'product'
 ];
 
 foreach ($listMenus as $key => $menu) {
