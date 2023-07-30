@@ -49,11 +49,19 @@ class StoreController extends Controller
         if (auth()->user()->role_id == User::MEMBER) {
             $request->merge([
                 "user_id" => auth()->user()->id,
-                "slug" => Str::slug($request->name)
+                "slug" => Str::slug($request->name),
             ]);
         }
 
         try {
+            if ($request->hasFile('document_logo')) {
+                $request->merge([
+                    "logo" => $request->file('document_logo')->store('logo_member')
+                ]);
+            }
+
+            dd($request->all());
+
             $store = $this->store->create($request->all());
 
             DB::commit();
@@ -92,6 +100,12 @@ class StoreController extends Controller
         ]);
 
         try {
+            if ($request->hasFile('document_logo')) {
+                $request->merge([
+                    "logo" => $request->file('document_logo')->store('logo_member')
+                ]);
+            }
+
             $store->update($request->all());
 
             DB::commit();
