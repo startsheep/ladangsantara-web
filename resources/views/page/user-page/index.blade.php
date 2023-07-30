@@ -9,7 +9,7 @@
             <a href="#about" class="btn-get-started scrollto">Mari Mulai</a>
           </div>
           <div class="col-sm">
-            <img src="{{asset('assets/images/about.jpg')}}" width="100" height="100" alt="">
+            <img src="{{asset('assets/images/proto.png')}}" width="150" height="159" alt="">
           </div>
         </div>
       </div>
