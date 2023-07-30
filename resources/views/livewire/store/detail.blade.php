@@ -66,29 +66,30 @@
                     </div>
                     <div class="mt-12">
                         <h5 class="mb-5 dark:text-white font-semibold text-2xl">Produk Kami</h5>
-                        <div class="overflow-x-auto">
+                        <div class="flex justify-between sm:items-center sm:flex-row flex-col">
+                            <x-text-input wire:model="search" id="name" name="name" type="search"
+                                placeholder="Pencarian" class="block sm:w-60 w-full max-w-full" />
+
+                            @myPagination($products)
+                        </div>
+                        <div class="overflow-x-auto mt-5">
                             <table class="min-w-full border text-left text-sm font-light">
                                 <thead class="border-b font-medium dark:border-neutral-500">
                                     <tr>
                                         <th scope="col" class="px-6 py-4 border-r">#</th>
-                                        <th scope="col" class="px-6 py-4 border-r">Nama Toko</th>
-                                        <th scope="col" class="px-6 py-4 border-r">Nama Pemilik</th>
+                                        <th scope="col" class="px-6 py-4 border-r">Nama Produk</th>
+                                        <th scope="col" class="px-6 py-4 border-r">Harga Produk</th>
+                                        <th scope="col" class="px-6 py-4 border-r">Stok Produk</th>
+                                        <th scope="col" class="px-6 py-4 border-r">Kategori Produk</th>
+                                        <th scope="col" class="px-6 py-4 border-r">Jumlah Terjual</th>
                                         <th scope="col" class="px-6 py-4 border-r">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                                        <td class="whitespace-nowrap px-6 py-4 border-r font-medium">
-                                            {{ '1' }}
-                                        </td>
-                                        <td class="whitespace-nowrap px-6 py-4 border-r">{{ 'Product 1' }}</td>
-                                        <td class="whitespace-nowrap px-6 py-4 border-r">{{ 'asasas' }}</td>
-                                        <td class="whitespace-nowrap px-6 py-4 border-r">
-                                            <x-primary-button url="/">Detail</x-primary-button>
-                                            <x-danger-button>Hapus</x-danger-button>
-                                        </td>
-                                    </tr>
+                                    @forelse ($products as $index => $product)
+                                        @livewire('product.single', ['product' => $product, 'index' => $index + $products->firstItem()], key($product->id))
+                                    @empty
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

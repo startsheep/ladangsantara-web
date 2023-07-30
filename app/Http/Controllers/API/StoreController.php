@@ -13,6 +13,7 @@ use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,11 +48,18 @@ class StoreController extends Controller
 
         if (auth()->user()->role_id == User::MEMBER) {
             $request->merge([
-                "user_id" => auth()->user()->id
+                "user_id" => auth()->user()->id,
+                "slug" => Str::slug($request->name),
             ]);
         }
 
         try {
+            if ($request->hasFile('document_logo')) {
+                $request->merge([
+                    "logo" => $request->file('document_logo')->store('logo_member')
+                ]);
+            }
+
             $store = $this->store->create($request->all());
 
             DB::commit();
@@ -85,7 +93,17 @@ class StoreController extends Controller
             return $this->warningMessage("data toko tidak ditemukan.");
         }
 
+        $request->merge([
+            "slug" => Str::slug($request->name)
+        ]);
+
         try {
+            if ($request->hasFile('document_logo')) {
+                $request->merge([
+                    "logo" => $request->file('document_logo')->store('logo_member')
+                ]);
+            }
+
             $store->update($request->all());
 
             DB::commit();

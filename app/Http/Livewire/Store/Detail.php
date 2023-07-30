@@ -16,6 +16,8 @@ class Detail extends Component
 
     public function render()
     {
-        return view('livewire.store.detail');
+        $products = $this->store->products()->paginate(10);
+
+        return view('livewire.store.detail', compact('products'));
     }
 }

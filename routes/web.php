@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('web.home.index');
+Route::get('/s/{slug}', [LandingPageController::class, 'store'])->name('web.store.slug');
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,10 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('home', LandingPageController::class);
-
 $listMenus = [
-    'store' => 'store'
+    'store' => 'store',
+    'product' => 'product'
 ];
 
 foreach ($listMenus as $key => $menu) {

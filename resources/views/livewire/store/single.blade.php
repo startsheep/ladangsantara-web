@@ -3,6 +3,7 @@
     <td class="whitespace-nowrap px-6 py-4 border-r font-medium">{{ $index }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $store->name }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $store->user->name }}</td>
+    <td class="whitespace-nowrap px-6 py-4 border-r">{{ $store->address }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
         <x-primary-button url="{{ route('web.store.detail', $store->id) }}">Detail</x-primary-button>
         <x-danger-button class="btn-delete" data-url="{{ route('web.store.delete', $store->id) }}">Hapus</x-danger-button>

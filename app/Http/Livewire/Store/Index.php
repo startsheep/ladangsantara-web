@@ -23,7 +23,7 @@ class Index extends Component
         });
 
         $data = [
-            "stores" => $store->paginate(10)
+            "stores" => $store->paginate(2)
         ];
 
         return view('livewire.store.index', $data);
