@@ -1,6 +1,3 @@
-@push('style')
-    @livewireStyles()
-@endpush
 <div>
     <x-slot name="header">
         <div class="flex justify-between sm:items-center sm:flex-row flex-col">
@@ -48,7 +45,3 @@
         </div>
     </div>
 </div>
-
-@push('script')
-    @livewireScripts()
-@endpush

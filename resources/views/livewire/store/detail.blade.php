@@ -30,14 +30,6 @@
                         </div>
                         <div class="w-full max-w-full px-3 mx-auto shrink-0 lg:flex-0 lg:w-5/12">
                             <h3 class="mt-6 dark:text-white lg:mt-0 text-3xl font-bold">{{ $store->name }}</h3>
-                            <div class="float-left border-0">
-                                <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                <i class="fa-solid fa-star-half-alt" aria-hidden="true"></i>
-                            </div>
-                            <br>
                             <div>
                                 <label
                                     class="inline-block mt-6 mb-2 font-bold text-sm text-slate-700 dark:text-white/80">
@@ -99,3 +91,59 @@
         </div>
     </div>
 </div>
+
+@foreach ($products as $product)
+    <x-modal name="confirm-user-deletion-{{ $product->id }}" focusable>
+        <div class="p-6">
+            <h2 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+                {{ __('Informasi Produk') }}
+            </h2>
+
+            <div class="flex sm:flex-row flex-col">
+                <div class="w-full lg:w-5/12 sm:w-4/12 sm:pr-4 pr-0 mb-5">
+                    <img src="{{ $product->image }}" alt="{{ $product->name }}">
+                </div>
+                <div class="w-full sm:pl-4 pl-0">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border text-left text-sm font-light">
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Nama Produk</th>
+                                <td class="border p-3">{{ $product->name }}</td>
+                            </tr>
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Kategori Produk</th>
+                                <td class="border p-3">{{ $product->category }}</td>
+                            </tr>
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Harga Produk</th>
+                                <td class="border p-3">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                            </tr>
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Stok Produk</th>
+                                <td class="border p-3">{{ $product->stock }}</td>
+                            </tr>
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Produk Terjual</th>
+                                <td class="border p-3">{{ $product->purchases()->where('status', 3)->get()->count() }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th class="border p-3 bg-blue-100">Deskripsi Produk</th>
+                                <td class="border p-3">{{ $product->description }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+                <x-secondary-button x-on:click="$dispatch('close')">
+                    {{ __('TUTUP') }}
+                </x-secondary-button>
+            </div>
+        </div>
+    </x-modal>
+@endforeach
+
+@push('script')
+@endpush

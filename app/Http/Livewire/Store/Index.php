@@ -12,6 +12,8 @@ class Index extends Component
 
     public $search;
 
+
+
     public function render()
     {
         $store = Store::query();
@@ -23,7 +25,7 @@ class Index extends Component
         });
 
         $data = [
-            "stores" => $store->paginate(2)
+            "stores" => $store->paginate(10)
         ];
 
         return view('livewire.store.index', $data);

@@ -9,7 +9,29 @@ use Livewire\Component;
 
 class Single extends Component
 {
-    public $store, $index;
+    public $store, $index, $dataId;
+
+    protected $listeners = ["deleteData", "reloadData"];
+
+    public function reload()
+    {
+        return $this->render();
+    }
+
+    protected function getListeners()
+    {
+        return [
+            'deleteData' => 'delete',
+            'reloadData' => 'reload'
+        ];
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->dataId = $id;
+
+        $this->dispatchBrowserEvent("showDeleteConfirmation");
+    }
 
     public function mount(Store $store, $index)
     {
@@ -27,15 +49,16 @@ class Single extends Component
         DB::beginTransaction();
 
         try {
-            if ($this->store->logo) {
-                $path = str_replace(url('storage') . '/', '', $this->store->logo);
-                Storage::delete($path);
-            }
+            // if ($this->store->logo) {
+            //     $path = str_replace(url('storage') . '/', '', $this->store->logo);
+            //     Storage::delete($path);
+            // }
 
-            $this->store->delete();
+            // $this->store->delete();
 
             DB::commit();
-            $this->render();
+            $this->dataId = null;
+            $this->dispatchBrowserEvent('showDeleteSuccess');
         } catch (\Throwable $th) {
             DB::rollBack();
             dd($th->getMessage());

@@ -55,7 +55,8 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                             <a href="" id="showDetail" data-bs-toggle="modal" data-bs-target="#detailProductModal"
                                 data-name="{{ $product->name }}" data-image="{{ $product->image }}"
-                                data-category="{{ $product->category }}" data-price="{{ $product->price }}"
+                                data-category="{{ $product->category }}"
+                                data-price="Rp {{ number_format($product->price, 0, ',', '.') }}"
                                 data-stock="{{ $product->stock }}" data-description="{{ $product->description }}">
                                 <div class="card">
                                     <img src="{{ $product->image }}" class="card-img-top" alt="{{ $product->name }}"

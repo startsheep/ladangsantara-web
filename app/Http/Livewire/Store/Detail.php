@@ -9,6 +9,15 @@ class Detail extends Component
 {
     public $store;
 
+    protected $listeners = ["reloadData"];
+
+    protected function getListeners()
+    {
+        return [
+            'reloadData' => 'reload'
+        ];
+    }
+
     public function mount(Store $store)
     {
         $this->store = $store;
@@ -19,5 +28,10 @@ class Detail extends Component
         $products = $this->store->products()->paginate(10);
 
         return view('livewire.store.detail', compact('products'));
+    }
+
+    public function reload()
+    {
+        return $this->render();
     }
 }
