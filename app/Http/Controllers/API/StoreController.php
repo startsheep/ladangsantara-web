@@ -60,8 +60,6 @@ class StoreController extends Controller
                 ]);
             }
 
-            dd($request->all());
-
             $store = $this->store->create($request->all());
 
             DB::commit();
