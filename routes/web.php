@@ -35,7 +35,8 @@ Route::middleware('auth')->group(function () {
 
 $listMenus = [
     'store' => 'store',
-    'product' => 'product'
+    'product' => 'product',
+    'user' => 'user'
 ];
 
 foreach ($listMenus as $key => $menu) {

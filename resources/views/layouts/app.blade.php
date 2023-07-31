@@ -14,11 +14,14 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/sweetalert/dist/sweetalert2.all.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chartjs/dist/chart.umd.js') }}"></script>
 
     @stack('style')
 
@@ -78,10 +81,24 @@
                 icon: "success"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit('reloadData')
+                    Livewire.emit('reload')
                 }
             })
         })
+    </script>
+
+    <script>
+        window.addEventListener('toastr', event => {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "onHidden": function() {
+                    location.reload()
+                }
+            };
+
+            toastr[event.detail.type](event.detail.message, event.detail.title ?? '');
+        });
     </script>
 </body>
 

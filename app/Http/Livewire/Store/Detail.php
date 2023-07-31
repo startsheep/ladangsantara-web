@@ -2,21 +2,14 @@
 
 namespace App\Http\Livewire\Store;
 
+use App\Models\Product;
 use App\Models\Store;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Detail extends Component
 {
     public $store;
-
-    protected $listeners = ["reloadData"];
-
-    protected function getListeners()
-    {
-        return [
-            'reloadData' => 'reload'
-        ];
-    }
 
     public function mount(Store $store)
     {
@@ -30,8 +23,23 @@ class Detail extends Component
         return view('livewire.store.detail', compact('products'));
     }
 
-    public function reload()
+    public function delete($id)
     {
-        return $this->render();
+        DB::beginTransaction();
+
+        $product = Product::whereId($id)->first();
+
+        try {
+            $product->delete();
+            DB::commit();
+            $this->render();
+            $this->dispatchBrowserEvent(
+                'toastr',
+                ['type' => 'success',  'message' => 'data berhasil dihapus!']
+            );
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th->getMessage());
+        }
     }
 }

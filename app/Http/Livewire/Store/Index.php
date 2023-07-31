@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Store;
 
 use App\Models\Store;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,8 +12,6 @@ class Index extends Component
     use WithPagination;
 
     public $search;
-
-
 
     public function render()
     {
@@ -29,5 +28,25 @@ class Index extends Component
         ];
 
         return view('livewire.store.index', $data);
+    }
+
+    public function delete($id)
+    {
+        DB::beginTransaction();
+
+        $store = Store::whereId($id)->first();
+
+        try {
+            $store->delete();
+            DB::commit();
+            $this->render();
+            $this->dispatchBrowserEvent(
+                'toastr',
+                ['type' => 'success',  'message' => 'data berhasil dihapus!']
+            );
+        } catch (\Throwable $th) {
+            DB::rollback();
+            dd($th->getMessage());
+        }
     }
 }

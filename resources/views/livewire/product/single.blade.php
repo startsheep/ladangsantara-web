@@ -15,7 +15,8 @@
         <x-primary-button x-data=""
             x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $product->id }}')">
             Detail</x-primary-button>
-        <x-danger-button wire:click="confirmDelete({{ $product->id }})">Hapus
+        <x-danger-button x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion-{{ $product->id }}')">Hapus
         </x-danger-button>
     </td>
 </tr>

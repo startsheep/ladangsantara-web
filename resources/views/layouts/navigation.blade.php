@@ -19,6 +19,9 @@
                     <x-nav-link :href="route('web.store.index')" :active="request()->routeIs('web.store.index')">
                         {{ __('Data Mitra') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('web.user.index')" :active="request()->routeIs('web.user.index')">
+                        {{ __('Data Pengguna') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -43,7 +46,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Profil Saya') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -53,7 +56,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Keluar') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
