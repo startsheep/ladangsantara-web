@@ -43,4 +43,29 @@
             </div>
         </div>
     </div>
+
+    @foreach ($users as $user)
+        <x-modal name="confirm-user-deletion-{{ $user->id }}" focusable>
+            <form wire:submit.prevent="delete({{ $user->id }})">
+                <div class="p-6">
+                    <h2 class="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+                        {{ __('Konfirmasi') }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                        {{ __("apakah anda yakin menghapus data pengguna $user->name?") }}
+                    </p>
+
+                    <div class="mt-6 flex justify-end">
+                        <x-secondary-button x-on:click="$dispatch('close')">
+                            {{ __('TUTUP') }}
+                        </x-secondary-button>
+                        <x-danger-button class="ml-3">
+                            {{ __('HAPUS') }}
+                        </x-danger-button>
+                    </div>
+                </div>
+            </form>
+        </x-modal>
+    @endforeach
 </div>

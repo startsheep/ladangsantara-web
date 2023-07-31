@@ -89,15 +89,15 @@
 
     <script>
         window.addEventListener('toastr', event => {
-            toastr.options = {
-                "closeButton": true,
-                "progressBar": true,
-                "onHidden": function() {
-                    location.reload()
-                }
-            };
+            // toastr.options = {
+            //     "closeButton": true,
+            //     "progressBar": true,
+            //     "onHidden": function() {
+            location.reload()
+            //     }
+            // };
 
-            toastr[event.detail.type](event.detail.message, event.detail.title ?? '');
+            // toastr[event.detail.type](event.detail.message, event.detail.title ?? '');
         });
     </script>
 </body>

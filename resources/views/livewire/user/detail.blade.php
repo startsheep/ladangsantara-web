@@ -29,11 +29,13 @@
                             <hr class="my-5">
                             <div class="text-left">
                                 <p class="font-bold"><span class="fas fa-location-dot"></span>&nbsp; Alamat</p>
-                                <p>{{ $user->address()->isActive()->first()->address }}, desa
-                                    {{ $user->address()->isActive()->first()->village['nama'] }}, kec.
-                                    {{ $user->address()->isActive()->first()->district['nama'] }}, kab.
-                                    {{ $user->address()->isActive()->first()->regency['nama'] }},
-                                    {{ $user->address()->isActive()->first()->province['nama'] }}.</p>
+                                @if ($user->address)
+                                    <p>{{ $user->address()->isActive()->first()->address }}, desa
+                                        {{ $user->address()->isActive()->first()->village['nama'] }}, kec.
+                                        {{ $user->address()->isActive()->first()->district['nama'] }}, kab.
+                                        {{ $user->address()->isActive()->first()->regency['nama'] }},
+                                        {{ $user->address()->isActive()->first()->province['nama'] }}.</p>
+                                @endif
                             </div>
                         </div>
                     </div>
