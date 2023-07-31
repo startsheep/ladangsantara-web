@@ -7,6 +7,7 @@ $listMenus = [
     'store' => 'store',
     'order' => 'order',
     'recipe' => 'recipe',
+    'banner' => 'banner',
     'review' => 'review',
     'product' => 'product',
 ];
