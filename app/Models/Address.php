@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Controllers\API\Region\Facades\InitRegion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Http;
 
 class Address extends Model
@@ -51,5 +52,15 @@ class Address extends Model
         $apiVillage = Http::get(InitRegion::API_REGION . InitRegion::VILLAGE . $this->attributes["village_id"])->json();
 
         return $apiVillage;
+    }
+
+    public function getMyAddressAttribute()
+    {
+        return $this->attributes["address"];
+    }
+
+    public function scopeIsActive(Builder $query)
+    {
+        return  $query->where("is_default", self::ACTIVE);
     }
 }
