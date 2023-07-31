@@ -8,17 +8,24 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="{{ asset('assets/images/ladangsantara.png') }}" type="image/x-icon" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/toastr/toastr.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/sweetalert/dist/sweetalert2.all.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chartjs/dist/chart.umd.js') }}"></script>
 
     @stack('style')
+
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -44,8 +51,11 @@
     @stack('modal')
 
     @stack('script')
+
+    @livewireScripts
+
     <script>
-        $("body").on("click", ".btn-delete", function() {
+        document.addEventListener("showDeleteConfirmation", dataId => {
             Swal.fire({
                 title: 'Apakah anda yakin?',
                 text: "Data ini akan dihapus!",
@@ -56,16 +66,39 @@
                 cancelButtonText: 'Batal',
                 confirmButtonText: 'Hapus'
             }).then((result) => {
-                console.log($(this).data('url'));
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Selamat!",
-                        text: "Data berhasil dihapus",
-                        icon: "success"
-                    })
+                    Livewire.emit('deleteData', dataId);
                 }
             })
         })
+    </script>
+
+    <script>
+        document.addEventListener("showDeleteSuccess", function() {
+            Swal.fire({
+                title: "Selamat!",
+                text: "Data berhasil dihapus",
+                icon: "success"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit('reload')
+                }
+            })
+        })
+    </script>
+
+    <script>
+        window.addEventListener('toastr', event => {
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "onHidden": function() {
+                    location.reload()
+                }
+            };
+
+            toastr[event.detail.type](event.detail.message, event.detail.title ?? '');
+        });
     </script>
 </body>
 

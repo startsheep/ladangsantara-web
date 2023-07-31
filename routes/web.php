@@ -35,14 +35,15 @@ Route::middleware('auth')->group(function () {
 
 $listMenus = [
     'store' => 'store',
-    'product' => 'product'
+    'product' => 'product',
+    'user' => 'user'
 ];
 
 foreach ($listMenus as $key => $menu) {
     $name = ucfirst($key);
     $component = "App\\Http\\Livewire\\$name";
 
-    Route::prefix($menu)->name("web.$key.")->group(function () use ($key, $component) {
+    Route::prefix($menu)->name("web.$key.")->middleware('auth')->group(function () use ($key, $component) {
         if (@class_exists("$component\\Index")) {
             Route::get('/', "$component\\Index")->name('index');
         }

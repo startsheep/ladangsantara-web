@@ -2,7 +2,7 @@
     class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
     <td class="whitespace-nowrap px-6 py-4 border-r font-medium">{{ $index }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $product->name }}</td>
-    <td class="whitespace-nowrap px-6 py-4 border-r">{{ $product->price }}</td>
+    <td class="whitespace-nowrap px-6 py-4 border-r">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $product->stock }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $product->category }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
@@ -12,8 +12,11 @@
         </span>
     </td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
-        <x-primary-button url="{{ route('web.product.detail', $product->id) }}">Detail</x-primary-button>
-        <x-danger-button class="btn-delete" data-url="{{ route('web.product.delete', $product->id) }}">Hapus
+        <x-primary-button x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion-{{ $product->id }}')">
+            Detail</x-primary-button>
+        <x-danger-button x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-product-deletion-{{ $product->id }}')">Hapus
         </x-danger-button>
     </td>
 </tr>

@@ -30,7 +30,7 @@ class StoreCreateRequest extends FormRequest
             "address" => "required|max:255",
             "lat" => "required",
             "long" => "required",
-            "logo" => "image|mimes:png,jpg,jpeg",
+            "document_logo" => "image|mimes:png,jpg,jpeg",
         ];
     }
 
@@ -40,6 +40,7 @@ class StoreCreateRequest extends FormRequest
             "name" => "nama toko",
             "description" => "deskripsi toko",
             "address" => "alamat toko",
+            "document_logo" => "logo"
         ];
     }
 

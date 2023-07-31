@@ -6,6 +6,8 @@
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $store->address }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
         <x-primary-button url="{{ route('web.store.detail', $store->id) }}">Detail</x-primary-button>
-        <x-danger-button class="btn-delete" data-url="{{ route('web.store.delete', $store->id) }}">Hapus</x-danger-button>
+        <x-danger-button x-data=""
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-store-deletion-{{ $store->id }}')">Hapus
+        </x-danger-button>
     </td>
 </tr>
