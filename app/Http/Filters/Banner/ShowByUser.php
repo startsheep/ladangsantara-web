@@ -13,7 +13,7 @@ class ShowByUser
             return $next($query);
         }
 
-        $query->where('user_id', 'LIKE', '%' . request('user_id') . '%');
+        $query->where('user_id', request('user_id'));
 
         return $next($query);
     }
