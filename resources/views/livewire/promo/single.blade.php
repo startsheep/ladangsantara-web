@@ -3,7 +3,7 @@
     <td class="whitespace-nowrap px-6 py-4 border-r font-medium">{{ $index }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">{{ $banner->user->name }}</td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
-        <img src="{{ $banner->image_path }}" style="width: 180px; height: 90;">
+        <img src="{{ $banner->image_path }}" style="width: 180px; height: 90px;">
     </td>
     <td class="whitespace-nowrap px-6 py-4 border-r">
         <x-danger-button x-data=""
