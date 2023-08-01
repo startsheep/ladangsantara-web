@@ -27,6 +27,7 @@
                                 <tr>
                                     <th scope="col" class="px-6 py-4 border-r">#</th>
                                     <th scope="col" class="px-6 py-4 border-r">Nama Mitra</th>
+                                    <th scope="col" class="px-6 py-4 border-r">Nama Toko</th>
                                     <th scope="col" class="px-6 py-4 border-r">Gambar Promo</th>
                                     <th scope="col" class="px-6 py-4 border-r">Aksi</th>
                                 </tr>
