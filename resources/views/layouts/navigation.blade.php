@@ -22,6 +22,9 @@
                     <x-nav-link :href="route('web.user.index')" :active="request()->routeIs('web.user.index')">
                         {{ __('Data Pengguna') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('web.promo.index')" :active="request()->routeIs('web.promo.index')">
+                        {{ __('Data Promo') }}
+                    </x-nav-link>
                 </div>
             </div>
 
