@@ -16,11 +16,11 @@ class Card extends Component
         $amount = 0;
 
         foreach (Order::all() as $order) {
-            $amount += $order->amount_purchase;
+            $amount += $order->amount_purchase * 1.05;
         }
 
         foreach (Banner::all() as $banner) {
-            $amount += 150000;
+            $amount += 5000;
         }
 
         $data = [

@@ -38,6 +38,7 @@ class BannerController extends Controller
                 ShowByUser::class
             ])
             ->thenReturn()
+            ->with('user.store')
             ->paginate($request->per_page);
 
         return new BannerCollection($banners);
@@ -88,6 +89,8 @@ class BannerController extends Controller
         if (!$banner) {
             return $this->warningMessage("data banner tidak ditemukan.");
         }
+
+        $banner->load('user.store');
 
         return new BannerDetail($banner);
     }

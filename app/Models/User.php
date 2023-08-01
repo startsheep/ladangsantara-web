@@ -55,6 +55,11 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'id', 'role_id');
     }
 
+    public function store(): HasOne
+    {
+        return $this->hasOne(Store::class, 'user_id', 'id');
+    }
+
     public function address(): HasOne
     {
         return $this->hasOne(Address::class, 'user_id', 'id');
