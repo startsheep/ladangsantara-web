@@ -66,7 +66,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-cart-alt"></i></div>
                             <h4><span>Santara Mall</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-money"></i></div>
                             <h4><span>Online Payment</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-location-plus"></i></div>
                             <h4><span>Geolocation</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-search-alt"></i></div>
                             <h4><span>Freshness Detection</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-book-bookmark"></i></div>
                             <h4><span>Receipe Recomendation</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-comment"></i></div>
                             <h4><span>Review</span></h4>
-                            <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore.
+                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
                             </p>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
             <div class="container" data-aos="zoom-in">
 
                 <div class="text-center">
-                    <a class="cta-btn" href="#">Unduh Aplikasi</a>
+                    <a class="cta-btn" href="https://drive.google.com/drive/folders/1aibhSxQhmtJcHs5xgGD2-54uiYQmk1KJ?usp=sharing">Unduh Aplikasi</a>
                 </div>
 
             </div>
