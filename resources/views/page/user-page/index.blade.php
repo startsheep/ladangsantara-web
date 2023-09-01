@@ -66,7 +66,8 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-cart-alt"></i></div>
                             <h4><span>Santara Mall</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Santara mall merupakan fitur yang menyediakan berbagai mitra yang menjual macam buah dan
+                                sayuran dan dapat dibeli secara online.
                             </p>
                         </div>
                     </div>
@@ -76,7 +77,8 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-money"></i></div>
                             <h4><span>Online Payment</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Ladangsantara telah terintegrasi dengan thirdparty payment gateway yaitu Xendit, sehingga
+                                pengguna dapat melakukan pembayaran secara online.
                             </p>
                         </div>
                     </div>
@@ -86,7 +88,8 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-location-plus"></i></div>
                             <h4><span>Geolocation</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Ladangsantara memiliki fitur geolocation yang dapat menunjukkan lokasi pengguna dan
+                                lokasi mitra terdekat.
                             </p>
                         </div>
                     </div>
@@ -95,7 +98,8 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-search-alt"></i></div>
                             <h4><span>Freshness Detection</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Ladangsantara dilengkapi dengan teknologi machine learning sehingga memiliki fitur freshness detection yang dapat mendeteksi kesegaran buah
+                                dan sayuran.
                             </p>
                         </div>
                     </div>
@@ -104,7 +108,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-book-bookmark"></i></div>
                             <h4><span>Receipe Recomendation</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Receipe Recomendation merupakan fitur yang dapat memberikan rekomendasi resep makanan atau minuman yang tepat berdasarkan buah atau sayuran yang dideteksi.
                             </p>
                         </div>
                     </div>
@@ -113,7 +117,7 @@
                         <div class="icon-box">
                             <div class="icon"><i class="bx bx-comment"></i></div>
                             <h4><span>Review</span></h4>
-                            {{-- <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, labore. --}}
+                            <p class="">Review merupakan fitur yang dapat memberikan ulasan terhadap produk yang dibeli oleh pengguna.
                             </p>
                         </div>
                     </div>
